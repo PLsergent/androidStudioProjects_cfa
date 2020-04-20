@@ -2,12 +2,23 @@ package com.example.surprise;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,27 +30,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final WebView webView = findViewById(R.id.webView);
-        final EditText searchBar = findViewById(R.id.editText);
-        Button btn = findViewById(R.id.button);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
 
+        final EditText searchBar = findViewById(R.id.editText);
+        final Button btn = findViewById(R.id.button);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            String searchText = searchBar.getText().toString();
+                String searchText = searchBar.getText().toString();
+                StringBuilder output = shuffle(searchText);
 
-            List<Character> characters = new ArrayList<>();
-            for (char c:searchText.toCharArray()) {
-                characters.add(c);
-            }
-            StringBuilder output = new StringBuilder(searchText.length());
-            while (characters.size() != 0){
-                int randPicker = (int) (Math.random() * characters.size());
-                output.append(characters.remove(randPicker));
-            }
+                String url = "http://" + output + ".com";
+                String googleUrl = "https://www.google.com/search?q=" + output;
 
-            webView.loadUrl("http://" + output.toString() + ".com");
+                new tryCon().execute(webView, url, googleUrl);
             }
         });
+    }
+
+    public StringBuilder shuffle (String searchText){
+        List<Character> characters = new ArrayList<>();
+        for (char c:searchText.toCharArray()) {
+            characters.add(c);
+        }
+        StringBuilder output = new StringBuilder(searchText.length());
+        while (characters.size() != 0){
+            int randPicker = (int) (Math.random() * characters.size());
+            output.append(characters.remove(randPicker));
+        }
+        return output;
     }
 }
