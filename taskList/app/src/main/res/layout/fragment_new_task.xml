@@ -5,10 +5,41 @@
     android:layout_height="match_parent"
     tools:context=".NewTaskFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="60"
+            android:inputType="textPersonName"
+            android:hint="Task name" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="60"
+            android:inputType="date"
+            android:hint="Deadline (date)"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#673AB7"
+            android:clickable="true"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:text="Add task"
+            android:textColor="#E6E6E6"
+            android:textColorHighlight="#CA4747"
+            android:textColorHint="#673AB7"
+            android:textColorLink="#E3B0B0" />
+    </LinearLayout>
 
 </FrameLayout>
