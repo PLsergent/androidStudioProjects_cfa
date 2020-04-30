@@ -9,32 +9,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
+        android:gravity="center|bottom"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/task_name_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="60"
-            android:inputType="textPersonName"
-            android:hint="Task name" />
+            android:hint="Task name"
+            android:inputType="text" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/deadline_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="60"
-            android:inputType="date"
-            android:hint="Deadline (date)"/>
+            android:hint="Deadline : DD/MM/YYYY"
+            android:inputType="date" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/new_task_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#673AB7"
             android:clickable="true"
-            android:linksClickable="false"
-            android:longClickable="false"
+            android:cursorVisible="true"
             android:text="Add task"
             android:textColor="#E6E6E6"
             android:textColorHighlight="#CA4747"

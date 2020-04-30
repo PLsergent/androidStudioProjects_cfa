@@ -13,6 +13,9 @@ import com.example.tasklist.NewTaskFragment;
 import com.example.tasklist.R;
 import com.example.tasklist.TaskListFragment;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
@@ -22,10 +25,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
+    public ArrayList<String> items;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+        items = new ArrayList<>();
     }
 
     @Override
@@ -45,6 +50,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return fragment;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
@@ -55,5 +65,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         // Show 2 total pages.
         return 3;
+    }
+
+    public static void addItem(String taskName, Date deadline) {
+        //
     }
 }
