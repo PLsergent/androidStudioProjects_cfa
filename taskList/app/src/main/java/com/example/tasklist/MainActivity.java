@@ -36,10 +36,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-
-                if(position == 0) { // 0 = the first fragment in the ViewPager, in this case, the fragment i want to refresh its UI
-                    Fragment fragment = (Fragment) viewPager.getAdapter().instantiateItem(viewPager, position);
-                    fragment.onResume(); // here i call the onResume of the fragment, where i have the method updateUI() to update its UI
+                // Refresh the first fragment every time
+                if(position == 0) {
                     viewPager.getAdapter().notifyDataSetChanged();
                 }
             }

@@ -61,9 +61,11 @@ public class NewTaskFragment extends Fragment {
             @Override
             public void onClick(View v) {
             try {
+                // Get test from fields
                 String taskName = taskNameField.getText().toString();
                 Date deadline = (deadlineField.getText().toString() == "") ? new Date() : new SimpleDateFormat("dd/MM/yyyy").parse(deadlineField.getText().toString());
 
+                // Add item to the tasks list if not empty
                 if (!taskName.equals("")) {
                     SectionsPagerAdapter.addItem(taskName, deadline);
                     int duration = Toast.LENGTH_SHORT;

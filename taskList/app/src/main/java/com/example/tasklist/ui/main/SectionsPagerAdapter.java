@@ -26,6 +26,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
+    // Two lists to handle tasks names and deadlines
     public static ArrayList<String> items;
     public static ArrayList<String> deadlines;
 
@@ -76,12 +77,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return formatDate;
     }
 
+    // Add item to the list of task
     public static void addItem(String taskName, Date deadline) {
         items.add(taskName);
         String date = SectionsPagerAdapter.formatDate(deadline);
         deadlines.add(date);
     }
 
+    // Remove item
     public static void removeItem(int position) {
         items.remove(position);
         deadlines.remove(position);

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,6 +55,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             task_deadline = itemView.findViewById(R.id.deadline_id);
             button_done = itemView.findViewById(R.id.done_btn);
 
+            // Add event listener on the button to remove the item
             button_done.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
