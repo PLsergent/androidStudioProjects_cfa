@@ -1,5 +1,6 @@
  package com.example.tasklist;
 
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -52,6 +53,8 @@ public class NewTaskFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_new_task, container, false);
         final EditText taskNameField = view.findViewById(R.id.task_name_field);
         final EditText deadlineField = view.findViewById(R.id.deadline_field);
+        String date = SectionsPagerAdapter.formatDate(new Date());
+        deadlineField.setText(date);
         Button btn = view.findViewById(R.id.new_task_button);
 
         btn.setOnClickListener(new View.OnClickListener() {

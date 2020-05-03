@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import com.example.tasklist.ui.main.SectionsPagerAdapter;
 
 
 /**
@@ -23,7 +23,6 @@ public class TaskListFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    public  ArrayList<String> items = new ArrayList<>();
 
     public TaskListFragment() {
         // Required empty public constructor
@@ -53,7 +52,7 @@ public class TaskListFragment extends Fragment {
         layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new RecyclerAdapter(items, this.getContext());
+        adapter = new RecyclerAdapter(SectionsPagerAdapter.getItems(), SectionsPagerAdapter.getDeadlines(), this.getContext());
         recyclerView.setAdapter(adapter);
         return view;
     }

@@ -13,6 +13,7 @@ import com.example.tasklist.NewTaskFragment;
 import com.example.tasklist.R;
 import com.example.tasklist.TaskListFragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -25,12 +26,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
-    public ArrayList<String> items;
+    public static ArrayList<String> items;
+    public static ArrayList<String> deadlines;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
         items = new ArrayList<>();
+        deadlines = new ArrayList<>();
     }
 
     @Override
@@ -63,11 +66,27 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
         return 3;
     }
 
+    public static String formatDate(Date date) {
+        String pattern = " dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String formatDate = simpleDateFormat.format(date);
+        return formatDate;
+    }
+
     public static void addItem(String taskName, Date deadline) {
-        //
+        items.add(taskName);
+        String date = SectionsPagerAdapter.formatDate(deadline);
+        deadlines.add(date);
+    }
+
+    public static ArrayList getItems() {
+        return items;
+    }
+
+    public static ArrayList getDeadlines() {
+        return deadlines;
     }
 }
