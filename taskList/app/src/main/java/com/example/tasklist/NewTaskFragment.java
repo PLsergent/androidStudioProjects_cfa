@@ -60,23 +60,23 @@ public class NewTaskFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    String taskName = taskNameField.getText().toString();
-                    Date deadline = (deadlineField.getText().toString() == "") ? new Date() : new SimpleDateFormat("dd/MM/yyyy").parse(deadlineField.getText().toString());
+            try {
+                String taskName = taskNameField.getText().toString();
+                Date deadline = (deadlineField.getText().toString() == "") ? new Date() : new SimpleDateFormat("dd/MM/yyyy").parse(deadlineField.getText().toString());
 
-                    if (taskName != "") {
-                        SectionsPagerAdapter.addItem(taskName, deadline);
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(getContext(), "Task added", duration);
-                        toast.show();
-                    } else {
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(getContext(), "Task name required", duration);
-                        toast.show();
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                if (!taskName.equals("")) {
+                    SectionsPagerAdapter.addItem(taskName, deadline);
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(getContext(), "Task added", duration);
+                    toast.show();
+                } else {
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(getContext(), "Task name required", duration);
+                    toast.show();
                 }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             }
         });
         return view;

@@ -82,6 +82,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         deadlines.add(date);
     }
 
+    public static void removeItem(int position) {
+        items.remove(position);
+        deadlines.remove(position);
+    }
+
     public static ArrayList getItems() {
         return items;
     }
