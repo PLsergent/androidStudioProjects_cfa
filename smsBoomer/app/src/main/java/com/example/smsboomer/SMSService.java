@@ -14,8 +14,6 @@ import androidx.annotation.Nullable;
 public class SMSService extends Service {
 
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
-    private boolean active;
-    private int countSMSReceived;
 
     public void onCreate() {
         super.onCreate();

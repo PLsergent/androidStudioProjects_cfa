@@ -9,17 +9,17 @@
         android:id="@+id/navigation_stats"
         android:name="com.example.smsboomer.ui.stats.StatsFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_stats" />
 
     <fragment
         android:id="@+id/navigation_sms"
         android:name="com.example.smsboomer.ui.sms.SmsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_sms" />
 
     <fragment
         android:id="@+id/navigation_param"
         android:name="com.example.smsboomer.ui.params.ParamsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_params" />
 </navigation>

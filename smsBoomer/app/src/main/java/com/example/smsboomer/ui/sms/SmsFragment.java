@@ -22,12 +22,10 @@ public class SmsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         smsViewModel =
                 ViewModelProviders.of(this).get(SmsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
+        View root = inflater.inflate(R.layout.fragment_sms, container, false);
         smsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
             }
         });
         return root;

@@ -22,12 +22,11 @@ public class ParamsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         paramsViewModel =
                 ViewModelProviders.of(this).get(ParamsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        View root = inflater.inflate(R.layout.fragment_params, container, false);
         paramsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+
             }
         });
         return root;
