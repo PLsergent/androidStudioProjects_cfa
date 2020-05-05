@@ -68,13 +68,9 @@ public class NewTaskFragment extends Fragment {
                 // Add item to the tasks list if not empty
                 if (!taskName.equals("")) {
                     SectionsPagerAdapter.addItem(taskName, deadline);
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(getContext(), "Task added", duration);
-                    toast.show();
+                    Toast.makeText(getContext(), "Task added", Toast.LENGTH_SHORT).show();
                 } else {
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(getContext(), "Task name required", duration);
-                    toast.show();
+                    Toast.makeText(getContext(), "Task name required", Toast.LENGTH_SHORT).show();
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
