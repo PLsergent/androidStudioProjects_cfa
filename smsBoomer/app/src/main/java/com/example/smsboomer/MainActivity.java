@@ -1,12 +1,15 @@
 package com.example.smsboomer;
 
 import android.Manifest;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.smsboomer.ui.stats.StatsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -18,12 +21,15 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 2;
-    private static final int MY_PERMISSIONS_REQUEST_RECEIVE_SMS = 3;
-    private static final int MY_PERMISSIONS_REQUEST_READ_SMS = 4;
+    public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
+    public static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 2;
+    public static final int MY_PERMISSIONS_REQUEST_RECEIVE_SMS = 3;
+    public static final int MY_PERMISSIONS_REQUEST_READ_SMS = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         statePermission();
 
-        Intent i = new Intent(this, SMSService.class);
-        this.startService(i);
+        Intent service = new Intent(this, SMSService.class);
+        startService(service);
     }
 
     private void statePermission() {
@@ -66,24 +72,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // ================================== SEND SMS ========================================
-
-        if (permissionCheck2 != PackageManager.PERMISSION_GRANTED || permissionCheck3 != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.SEND_SMS)) {
-                showExplanation("Permission to send and receive SMS", "Accept the following permission", Manifest.permission.SEND_SMS, MY_PERMISSIONS_REQUEST_SEND_SMS);
-            } else {
-                requestPermission(Manifest.permission.SEND_SMS, MY_PERMISSIONS_REQUEST_SEND_SMS);
-                requestPermission(Manifest.permission.SEND_SMS, MY_PERMISSIONS_REQUEST_RECEIVE_SMS);
-            }
-        }
-
         // ================================== READ SMS ========================================
 
         if (permissionCheck4 != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.READ_SMS)) {
-                showExplanation("Permission to read SMS", "Accept the following permission", Manifest.permission.READ_SMS, MY_PERMISSIONS_REQUEST_READ_SMS);
+                showExplanation("Permission to access SMS", "Accept the following permission", Manifest.permission.READ_SMS, MY_PERMISSIONS_REQUEST_READ_SMS);
             } else {
                 requestPermission(Manifest.permission.READ_SMS, MY_PERMISSIONS_REQUEST_READ_SMS);
             }
@@ -99,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "Permission Granted : Read Contacts", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(this, MainActivity.class);
+                    startActivity(i);
                 } else {
                     Toast.makeText(MainActivity.this, "Permission Denied : Read Contacts", Toast.LENGTH_SHORT).show();
                 }
@@ -120,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "Permission Granted : Read SMS", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(this, MainActivity.class);
+                    startActivity(i);
                 } else {
                     Toast.makeText(MainActivity.this, "Permission Denied : Read SMS", Toast.LENGTH_SHORT).show();
                 }
