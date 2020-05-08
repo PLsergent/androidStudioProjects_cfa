@@ -8,8 +8,8 @@
         android:id="@+id/sms_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="5sp"
         android:layout_marginLeft="10sp"
+        android:layout_marginTop="20sp"
         android:text="Total SMS"
         android:textColor="#673AB7"
         android:textSize="24sp" />
@@ -18,7 +18,7 @@
         android:id="@+id/contact_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="5sp"
+        android:layout_marginVertical="10sp"
         android:layout_marginLeft="10sp"
         android:text="Total contacts"
         android:textColor="#673AB7"

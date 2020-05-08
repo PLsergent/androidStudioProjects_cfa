@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         statePermission();
-
-        Intent service = new Intent(this, SMSService.class);
-        startService(service);
     }
 
     private void statePermission() {
@@ -72,7 +69,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // ================================== READ SMS ========================================
+        // ================================== SMS ========================================
+
+        if (permissionCheck3 != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.RECEIVE_SMS)) {
+                showExplanation("Permission to access SMS", "Accept the following permission", Manifest.permission.RECEIVE_SMS, MY_PERMISSIONS_REQUEST_RECEIVE_SMS);
+            } else {
+                requestPermission(Manifest.permission.RECEIVE_SMS, MY_PERMISSIONS_REQUEST_RECEIVE_SMS);
+            }
+        }
+
+        if (permissionCheck2 != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.SEND_SMS)) {
+                showExplanation("Permission to access SMS", "Accept the following permission", Manifest.permission.SEND_SMS, MY_PERMISSIONS_REQUEST_SEND_SMS);
+            } else {
+                requestPermission(Manifest.permission.SEND_SMS, MY_PERMISSIONS_REQUEST_SEND_SMS);
+            }
+        }
 
         if (permissionCheck4 != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -83,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     public void onRequestPermissionsResult(
             int requestCode,

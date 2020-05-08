@@ -19,6 +19,7 @@ import com.example.tasklist.ui.main.SectionsPagerAdapter;
  * create an instance of this fragment.
  */
 public class TaskListFragment extends Fragment {
+
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
