@@ -1,3 +1,3 @@
 # androidStudioProjects\_cfa
 
-Mini mobile apps cfa classes.
+Some projects for cfa android studio courses.
