@@ -48,52 +48,57 @@ public class SmsFragment extends Fragment {
             public void onChanged(@Nullable String s) {
                 int permissionCheck = ContextCompat.checkSelfPermission(
                         getContext(), Manifest.permission.READ_SMS);
+                int permissionCheck2 = ContextCompat.checkSelfPermission(
+                        getContext(), Manifest.permission.SEND_SMS);
+
 
                 if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
                     lastSMS.setText(getLastSMS());
                     phoneNo.setText(getLastSMSPhoneNo());
                 }
 
-                btn1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(getLastSMSPhoneNo(), null, textAutos[0], null, null);
-                        Toast.makeText(getContext(), "SMS sent : " + textAutos[0],
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
+                if (permissionCheck2 == PackageManager.PERMISSION_GRANTED) {
 
-                btn2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(getLastSMSPhoneNo(), null, textAutos[1], null, null);
-                        Toast.makeText(getContext(), "SMS sent : " + textAutos[1],
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                btn3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(getLastSMSPhoneNo(), null, textAutos[2], null, null);
-                        Toast.makeText(getContext(), "SMS sent : " + textAutos[2],
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-
-                btnBomb.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SmsManager smsManager = SmsManager.getDefault();
-                        for (int i = 0; i < 100; i++) {
-                            smsManager.sendTextMessage(getLastSMSPhoneNo(), null, "You got bombed.", null, null);
+                    btn1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(getLastSMSPhoneNo(), null, textAutos[0], null, null);
+                            Toast.makeText(getContext(), "SMS sent : " + textAutos[0],
+                                    Toast.LENGTH_LONG).show();
                         }
-                    }
-                });
+                    });
+
+                    btn2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(getLastSMSPhoneNo(), null, textAutos[1], null, null);
+                            Toast.makeText(getContext(), "SMS sent : " + textAutos[1],
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    btn3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(getLastSMSPhoneNo(), null, textAutos[2], null, null);
+                            Toast.makeText(getContext(), "SMS sent : " + textAutos[2],
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    btnBomb.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            for (int i = 0; i < 100; i++) {
+                                smsManager.sendTextMessage(getLastSMSPhoneNo(), null, "You got bombed.", null, null);
+                            }
+                        }
+                    });
+                }
             }
         });
         return root;
