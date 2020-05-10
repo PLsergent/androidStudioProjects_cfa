@@ -41,7 +41,7 @@ public class SMSReceiver extends BroadcastReceiver {
                     msg = message[i].getMessageBody();
                     phone = message[i].getOriginatingAddress();
                 }
-                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Message received : " + msg, Toast.LENGTH_LONG).show();
             }
         }
     }

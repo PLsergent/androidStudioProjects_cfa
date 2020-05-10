@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 2;
     public static final int MY_PERMISSIONS_REQUEST_RECEIVE_SMS = 3;
     public static final int MY_PERMISSIONS_REQUEST_READ_SMS = 4;
+    public static String[] textAutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        textAutos = new String[]{"Salut", "Je suis pas dispo", "Je te réponds plus tard"};
 
         statePermission();
     }
